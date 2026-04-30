@@ -6,15 +6,15 @@ using namespace std;
 
 class Solution {
 
-    class UnionFind {
+    struct UnionFind {
 
         vector<int> rank;
         vector<int> parent;
 
-        UnionFind(int numberOfElements) {
-            rank.resize(numberOfElements);
-            parent.resize(numberOfElements);
-            for (int i = 0; i < numberOfElements; ++i) {
+        UnionFind(int numberOfelements) {
+            rank.resize(numberOfelements);
+            parent.resize(numberOfelements);
+            for (int i = 0; i < numberOfelements; ++i) {
                 rank[i] = 1;
                 parent[i] = i;
             }
@@ -27,14 +27,12 @@ class Solution {
             return parent[index];
         }
 
-    public:    
         bool joinByRank(int indexOne, int indexTwo) {
             int first = findParent(indexOne);
             int second = findParent(indexTwo);
             if (first == second) {
                 return false;
             }
-
             if (rank[first] >= rank[second]) {
                 rank[first] += rank[second];
                 parent[second] = first;
